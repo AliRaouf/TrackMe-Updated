@@ -1,27 +1,26 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:equatable/equatable.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'theme_state.dart';
 
 class ThemeCubit extends Cubit<ThemeState> {
-  ThemeCubit() : super(ThemeInitial());
+  ThemeCubit() : super(ThemeState(themeMode: loadThemeMode())) {}
   static ThemeCubit get(context) => BlocProvider.of(context);
-  Future<void> setInitialTheme() async {
-    final prefs = await SharedPreferences.getInstance();
-    final themeModeString = prefs.getString('themeMode') ?? 'system';
-    emit(ThemeChange(themeData: themeModeFromString(themeModeString)));
+  static SharedPreferences? _prefs;
+  static ThemeMode loadThemeMode() {
+    final themeModeString = _prefs?.getString('themeMode') ?? 'system';
+    return themeModeFromString(themeModeString);
   }
 
-  Future<void> changeTheme({required ThemeMode themeMode}) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('themeMode', themeModeToString(themeMode));
-    emit(ThemeChange(themeData: themeMode));
+  void changeTheme({required ThemeMode themeMode}) {
+    _prefs?.setString('themeMode', themeModeToString(themeMode));
+    emit(ThemeState(themeMode: themeMode));
   }
 
-  ThemeMode themeModeFromString(String themeModeString) {
+  static ThemeMode themeModeFromString(String themeModeString) {
     switch (themeModeString) {
       case 'light':
         return ThemeMode.light;
@@ -43,5 +42,9 @@ class ThemeCubit extends Cubit<ThemeState> {
       default:
         return 'system';
     }
+  }
+
+  static Future<void> init() async {
+    _prefs = await SharedPreferences.getInstance();
   }
 }

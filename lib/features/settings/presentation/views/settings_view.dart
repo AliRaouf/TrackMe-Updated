@@ -18,22 +18,33 @@ class _SettingsViewState extends State<SettingsView> {
       body: Center(
         child: BlocBuilder<ThemeCubit, ThemeState>(
           builder: (context, state) {
-            ThemeMode currentThemeMode;
-            if (state is ThemeChange) {
-              currentThemeMode = state.themeData;
-            } else {
-              currentThemeMode = ThemeMode.system;
-            }
+            ThemeMode currentThemeMode = state.themeMode;
             return SegmentedButton(
               emptySelectionAllowed: false,
               showSelectedIcon: false,
               style: ButtonStyle(
-                textStyle: MaterialStatePropertyAll(TextStyles.body16Dark),
-                backgroundColor: MaterialStateProperty.resolveWith((states) {
-                  if (states.contains(MaterialState.selected)) {
-                    return const Color(0xffFF9000);
+                textStyle: WidgetStatePropertyAll(TextStyles.body16Dark),
+                backgroundColor: WidgetStateProperty.resolveWith((states) {
+                  if (states.contains(WidgetState.selected)) {
+                    return Theme.of(context).colorScheme.primary;
                   } else {
-                    return const Color(0xfffafafa);
+                    return Theme.of(context).colorScheme.surface;
+                  }
+                }),
+                foregroundColor: WidgetStateProperty.resolveWith((states) {
+                  if (states.contains(WidgetState.selected)) {
+                    return Theme.of(context).colorScheme.onPrimary;
+                  } else {
+                    return Theme.of(context).colorScheme.onSurface;
+                  }
+                }),
+                side: WidgetStateProperty.resolveWith((states) {
+                  if (states.contains(WidgetState.selected)) {
+                    return BorderSide(
+                        color: Theme.of(context).colorScheme.primary);
+                  } else {
+                    return BorderSide(
+                        color: Theme.of(context).colorScheme.outline);
                   }
                 }),
               ),
@@ -43,8 +54,8 @@ class _SettingsViewState extends State<SettingsView> {
                 ButtonSegment(value: ThemeMode.system, label: Text('System')),
               ],
               selected: <ThemeMode>{currentThemeMode},
-              onSelectionChanged: (Set newSelection) async {
-                await cubit.changeTheme(themeMode: newSelection.first);
+              onSelectionChanged: (newSelection) async {
+                cubit.changeTheme(themeMode: newSelection.first);
                 setState(() {});
               },
             );

@@ -7,7 +7,7 @@ final ThemeData lightTheme = ThemeData(
   colorScheme: const ColorScheme.light(
     primary: Color(0xFF7E57C2), // Medium Purple
     secondary: Color(0xFFFF4081), // Pink
-    outline: Color(0xFF009688),
+    outline: Color(0xFF212121),
     surface: Color(0xFFFAFAFA), // Very light gray
     onPrimary: Color(0xFFFFFFFF), // Text color on primary
     onSecondary: Color(0xFFFFFFFF), // Text color on secondary
@@ -36,7 +36,7 @@ final ThemeData darkTheme = ThemeData(
   colorScheme: const ColorScheme.dark(
     primary: Color(0xFFBB86FC), // Light Purple
     secondary: Color(0xFF03DAC6), // Pink
-    outline: Color(0xFFFF4081), // Pink
+    outline: Color(0xFFFAFAFA), // Pink
     surface: Color(0xFF121212), // Almost Black
     onPrimary: Color(0xFFFFFFFF), // Text color on primary
     onSecondary: Color(0xFFFFFFFF), // Text color on background
@@ -51,7 +51,7 @@ final ThemeData darkTheme = ThemeData(
       titleLarge: TextStyles.title32Dark),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xfffbb86fc)), // Pink
+        backgroundColor: const Color(0xFFbb86fc)), // Pink
   ),
   appBarTheme: const AppBarTheme(
     backgroundColor: Color(0xFFBB86FC), // Light Purple

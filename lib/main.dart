@@ -4,7 +4,9 @@ import 'package:track_me_updated/core/app_router.dart';
 import 'package:track_me_updated/core/theme/themes.dart';
 import 'package:track_me_updated/features/theme/data/bloc/theme/theme_cubit.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await ThemeCubit.init();
   runApp(const MyApp());
 }
 
@@ -14,26 +16,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => ThemeCubit()..setInitialTheme())
-      ],
-      child: BlocConsumer<ThemeCubit, ThemeState>(
+      providers: [BlocProvider(create: (context) => ThemeCubit())],
+      child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, state) {
-          ThemeMode themeMode;
-          if (state is ThemeChange) {
-            themeMode = state.themeData;
-          } else {
-            themeMode = ThemeMode.system;
-          }
           return MaterialApp.router(
             routerConfig: AppRouter.router,
             theme: lightTheme,
             darkTheme: darkTheme,
-            themeMode: themeMode,
+            themeMode: state.themeMode,
             debugShowCheckedModeBanner: false,
           );
         },
-        listener: (BuildContext context, ThemeState state) {},
       ),
     );
   }
