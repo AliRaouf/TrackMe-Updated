@@ -31,8 +31,8 @@ class RecipeModel extends Equatable {
   final String? imageType;
   final Nutrition? nutrition;
   final String? summary;
-  final List<String>? cuisines;
-  final List<String>? dishTypes;
+  final List<dynamic>? cuisines;
+  final List<dynamic>? dishTypes;
   final List<dynamic>? diets;
   final List<dynamic>? occasions;
   final List<AnalyzedInstruction>? analyzedInstructions;
@@ -106,8 +106,8 @@ class RecipeModel extends Equatable {
             ? null
             : Nutrition.fromJson(json['nutrition'] as Map<String, dynamic>),
         summary: json['summary'] as String?,
-        cuisines: json['cuisines'] as List<String>?,
-        dishTypes: json['dishTypes'] as List<String>?,
+        cuisines: json['cuisines'] as List<dynamic>?,
+        dishTypes: json['dishTypes'] as List<dynamic>?,
         diets: json['diets'] as List<dynamic>?,
         occasions: json['occasions'] as List<dynamic>?,
         analyzedInstructions: (json['analyzedInstructions'] as List<dynamic>?)

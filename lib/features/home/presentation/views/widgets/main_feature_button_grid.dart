@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:track_me_updated/constants.dart';
 import 'package:track_me_updated/features/home/presentation/views/widgets/main_feature_button.dart';
 
@@ -20,6 +21,9 @@ class MainFeatureButtonGrid extends StatelessWidget {
               image: "assets/images/nutrition.svg",
             ),
             MainFeatureButton(
+              onTap: () {
+                context.push('/recipes');
+              },
               color: Theme.of(context).brightness == Brightness.dark
                   ? kHealtyRecipesDark
                   : kHealtyRecipesLight,

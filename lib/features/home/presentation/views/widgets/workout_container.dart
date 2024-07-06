@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:track_me_updated/core/styles.dart';
 
 class WorkoutContainer extends StatelessWidget {
@@ -21,8 +20,8 @@ class WorkoutContainer extends StatelessWidget {
                   ),
                 ],
           color: Theme.of(context).brightness == Brightness.dark
-              ? const Color(0xff1E1E1E)
-              : const Color(0xffFAFAFA),
+              ? Theme.of(context).colorScheme.secondary
+              : Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.circular(16)),
       margin: EdgeInsets.symmetric(
           vertical: MediaQuery.sizeOf(context).height * 0.04),
@@ -42,9 +41,7 @@ class WorkoutContainer extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleMedium),
                 const SizedBox(height: 12),
                 TextButton(
-                  onPressed: () {
-                    context.go('/settings');
-                  },
+                  onPressed: () {},
                   style: ButtonStyle(
                       shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8))),

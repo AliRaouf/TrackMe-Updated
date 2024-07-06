@@ -35,8 +35,8 @@ final ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
   colorScheme: const ColorScheme.dark(
     primary: Color(0xFFBB86FC), // Light Purple
-    secondary: Color(0xFF03DAC6), // Pink
-    outline: Color(0xFFFAFAFA), // Pink
+    secondary: Color(0xFF1e1e1e),
+    outline: Color(0xFFFAFAFA),
     surface: Color(0xFF121212), // Almost Black
     onPrimary: Color(0xFFFFFFFF), // Text color on primary
     onSecondary: Color(0xFFFFFFFF), // Text color on background
@@ -103,10 +103,16 @@ final ThemeData nutritionLogDarkTheme = darkTheme.copyWith(
   ),
 );
 final ThemeData healthyRecipesDarkTheme = lightTheme.copyWith(
-  colorScheme: lightTheme.colorScheme.copyWith(
-    primary: const Color(0xFF106033), // Dark Green
-  ),
-);
+    colorScheme: darkTheme.colorScheme.copyWith(
+      primary: const Color(0xFF106033), // Dark Green
+      outline: const Color(0xFF106033), // Dark Green
+    ),
+    textTheme: darkTheme.textTheme.copyWith(),
+    scaffoldBackgroundColor: const Color(0xff121212),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Color(0xFF106033), // Light Purple
+      titleTextStyle: TextStyle(color: Color(0xFFFFFFFF), fontSize: 20),
+    ));
 final ThemeData exercisesLibraryDarkTheme = lightTheme.copyWith(
   colorScheme: lightTheme.colorScheme.copyWith(
     primary: const Color(0xFF1D3557), // Dark Blue

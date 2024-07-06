@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:track_me_updated/core/styles.dart';
-import 'package:track_me_updated/features/theme/data/bloc/theme/theme_cubit.dart';
+import 'package:track_me_updated/features/settings/presentation/views/widgets/custom_segment_button.dart';
 
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
@@ -13,55 +11,28 @@ class SettingsView extends StatefulWidget {
 class _SettingsViewState extends State<SettingsView> {
   @override
   Widget build(BuildContext context) {
-    var cubit = ThemeCubit.get(context);
     return Scaffold(
-      body: Center(
-        child: BlocBuilder<ThemeCubit, ThemeState>(
-          builder: (context, state) {
-            ThemeMode currentThemeMode = state.themeMode;
-            return SegmentedButton(
-              emptySelectionAllowed: false,
-              showSelectedIcon: false,
-              style: ButtonStyle(
-                textStyle: WidgetStatePropertyAll(TextStyles.body16Dark),
-                backgroundColor: WidgetStateProperty.resolveWith((states) {
-                  if (states.contains(WidgetState.selected)) {
-                    return Theme.of(context).colorScheme.primary;
-                  } else {
-                    return Theme.of(context).colorScheme.surface;
-                  }
-                }),
-                foregroundColor: WidgetStateProperty.resolveWith((states) {
-                  if (states.contains(WidgetState.selected)) {
-                    return Theme.of(context).colorScheme.onPrimary;
-                  } else {
-                    return Theme.of(context).colorScheme.onSurface;
-                  }
-                }),
-                side: WidgetStateProperty.resolveWith((states) {
-                  if (states.contains(WidgetState.selected)) {
-                    return BorderSide(
-                        color: Theme.of(context).colorScheme.primary);
-                  } else {
-                    return BorderSide(
-                        color: Theme.of(context).colorScheme.outline);
-                  }
-                }),
-              ),
-              segments: const <ButtonSegment>[
-                ButtonSegment(value: ThemeMode.light, label: Text('Light')),
-                ButtonSegment(value: ThemeMode.dark, label: Text('Dark')),
-                ButtonSegment(value: ThemeMode.system, label: Text('System')),
+      body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  "Settings",
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text("Theme: ",
+                        style: Theme.of(context).textTheme.titleSmall),
+                    const CustomSegmentButton()
+                  ],
+                )
               ],
-              selected: <ThemeMode>{currentThemeMode},
-              onSelectionChanged: (newSelection) async {
-                cubit.changeTheme(themeMode: newSelection.first);
-                setState(() {});
-              },
-            );
-          },
-        ),
-      ),
+            ),
+          )),
     );
   }
 }
