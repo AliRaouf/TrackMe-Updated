@@ -4,14 +4,14 @@ import 'package:track_me_updated/core/styles.dart';
 // Light Theme
 final ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
-  colorScheme: const ColorScheme.light(
-    primary: Color(0xFF7E57C2), // Medium Purple
-    secondary: Color(0xFFFF4081), // Pink
-    outline: Color(0xFF212121),
-    surface: Color(0xFFFAFAFA), // Very light gray
-    onPrimary: Color(0xFFFFFFFF), // Text color on primary
-    onSecondary: Color(0xFFFFFFFF), // Text color on secondary
-    onSurface: Color(0xFF212121), // Text color on surface
+  colorScheme: ColorScheme.light(
+    primary: const Color(0xFF7E57C2), // Medium Purple
+    secondary: Colors.grey.shade300,
+    outline: const Color(0xFF212121),
+    surface: const Color(0xFFFAFAFA), // Very light gray
+    onPrimary: const Color(0xFFFFFFFF), // Text color on primary
+    onSecondary: const Color(0xFFFFFFFF), // Text color on secondary
+    onSurface: const Color(0xFF212121), // Text color on surface
   ),
   scaffoldBackgroundColor: const Color(0xFFFAFAFA),
   textTheme: TextTheme(
@@ -71,10 +71,21 @@ final ThemeData nutritionLogLightTheme = lightTheme.copyWith(
   ),
 );
 final ThemeData healthyRecipesLightTheme = lightTheme.copyWith(
-  colorScheme: lightTheme.colorScheme.copyWith(
-    primary: const Color(0xFF3ACBBA), // Light Green
-  ),
-);
+    colorScheme: lightTheme.colorScheme.copyWith(
+      primary: const Color(0xFF3ACBBA), // Light Green
+      outline: const Color(0xFF3ACBBA), // Light Green
+    ),
+    textTheme: lightTheme.textTheme.copyWith(),
+    scaffoldBackgroundColor: const Color(0xffFAFAFA),
+    elevatedButtonTheme: const ElevatedButtonThemeData(
+        style: ButtonStyle(
+            backgroundColor: WidgetStatePropertyAll(Color(0xff3ACBBA)))),
+    inputDecorationTheme: InputDecorationTheme(
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Color(0xFF3ACBBA), // Light Purple
+      titleTextStyle: TextStyle(color: Color(0xFFFFFFFF), fontSize: 20),
+    ));
 final ThemeData exercisesLibraryLightTheme = lightTheme.copyWith(
   colorScheme: lightTheme.colorScheme.copyWith(
     primary: const Color(0xFF4DA4DB), // Light Blue
@@ -102,17 +113,20 @@ final ThemeData nutritionLogDarkTheme = darkTheme.copyWith(
     primary: const Color(0xFFA41E1E), // Teal
   ),
 );
-final ThemeData healthyRecipesDarkTheme = lightTheme.copyWith(
+final ThemeData healthyRecipesDarkTheme = darkTheme.copyWith(
     colorScheme: darkTheme.colorScheme.copyWith(
       primary: const Color(0xFF106033), // Dark Green
       outline: const Color(0xFF106033), // Dark Green
     ),
-    textTheme: darkTheme.textTheme.copyWith(),
-    scaffoldBackgroundColor: const Color(0xff121212),
     appBarTheme: const AppBarTheme(
       backgroundColor: Color(0xFF106033), // Light Purple
       titleTextStyle: TextStyle(color: Color(0xFFFFFFFF), fontSize: 20),
-    ));
+    ),
+    elevatedButtonTheme: const ElevatedButtonThemeData(
+        style: ButtonStyle(
+            backgroundColor: WidgetStatePropertyAll(Color(0xff106033)))),
+    inputDecorationTheme: InputDecorationTheme(
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))));
 final ThemeData exercisesLibraryDarkTheme = lightTheme.copyWith(
   colorScheme: lightTheme.colorScheme.copyWith(
     primary: const Color(0xFF1D3557), // Dark Blue

@@ -22,11 +22,9 @@ class FetchRecipesCubit extends Cubit<FetchRecipesState> {
     final result = await recipeRepo.getSearchRecipes(query: query);
     result.fold(
       (l) {
-        print('Search error: ${l.errMessage}');
         emit(FetchSearchRecipesError(l.errMessage));
       },
       (r) {
-        print('Search success: ${r.length} recipes found');
         emit(FetchSearchRecipesSuccess(r));
       },
     );

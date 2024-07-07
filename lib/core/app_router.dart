@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:track_me_updated/features/home/presentation/views/home_view.dart';
-import 'package:track_me_updated/features/recipes/presentation/views/recipes_view.dart';
+import 'package:track_me_updated/features/recipes/presentation/views/bottom_nav_bar.dart';
 import 'package:track_me_updated/features/settings/presentation/views/settings_view.dart';
 
 abstract class AppRouter {
@@ -16,7 +16,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: '/recipes',
-        builder: (context, state) => const RecipesView(),
+        builder: (context, state) => const RecipeBottomNavBar(),
       ),
     ],
   );

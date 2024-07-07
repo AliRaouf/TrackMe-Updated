@@ -1,25 +1,19 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:track_me_updated/core/app_router.dart';
 import 'package:track_me_updated/core/theme/themes.dart';
 import 'package:track_me_updated/core/utils/api_service.dart';
-import 'package:track_me_updated/core/utils/simple_bloc_observer.dart';
 import 'package:track_me_updated/features/recipes/data/repo/recipe_repo_implementation.dart';
 import 'package:track_me_updated/features/recipes/presentation/bloc/fetch_recipes/fetch_recipes_cubit.dart';
+import 'package:track_me_updated/features/recipes/presentation/bloc/meal_planner/meal_planner_cubit.dart';
 import 'package:track_me_updated/features/theme/data/bloc/theme/theme_cubit.dart';
 
 void main() async {
-  BlocOverrides.runZoned(() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    runApp(const MyApp());
-  }, blocObserver: SimpleBlocObserver());
+  WidgetsFlutterBinding.ensureInitialized();
   await ThemeCubit.init();
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-  ]);
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -37,7 +31,17 @@ class MyApp extends StatelessWidget {
                         Dio(),
                       ),
                     ),
-                  )..fetchRandomRecipes())
+                  )
+              // ..fetchRandomRecipes()
+              ),
+          BlocProvider(
+              create: (context) => MealPlannerCubit(
+                    RecipeRepoImplementation(
+                      ApiService(
+                        Dio(),
+                      ),
+                    ),
+                  ))
         ],
         child: ScreenUtilInit(
             designSize: const Size(360, 800),
