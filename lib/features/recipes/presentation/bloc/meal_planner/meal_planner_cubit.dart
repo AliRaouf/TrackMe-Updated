@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:track_me_updated/features/recipes/data/models/meal_planner_model/meal_planner_model.dart';
+import 'package:track_me_updated/features/recipes/data/models/meal_planner_model/meal_planner_model/meal_planner_model.dart';
 import 'package:track_me_updated/features/recipes/data/repo/recipe_repo.dart';
 
 part 'meal_planner_state.dart';

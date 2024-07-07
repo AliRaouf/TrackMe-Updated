@@ -17,6 +17,6 @@ final class MealPlannerError extends MealPlannerState {
 }
 
 final class MealPlannerSuccess extends MealPlannerState {
-  final List<MealPlannerModel> meals;
+  final MealPlannerModel meals;
   const MealPlannerSuccess(this.meals);
 }

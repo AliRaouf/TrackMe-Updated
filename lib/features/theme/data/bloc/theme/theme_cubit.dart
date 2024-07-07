@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 part 'theme_state.dart';
 
 class ThemeCubit extends Cubit<ThemeState> {
-  ThemeCubit() : super(ThemeState(themeMode: loadThemeMode())) {}
+  ThemeCubit() : super(ThemeState(themeMode: loadThemeMode()));
   static ThemeCubit get(context) => BlocProvider.of(context);
   static SharedPreferences? _prefs;
   static ThemeMode loadThemeMode() {

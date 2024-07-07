@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:track_me_updated/core/failures.dart';
 import 'package:track_me_updated/core/utils/api_service.dart';
-import 'package:track_me_updated/features/recipes/data/models/meal_planner_model/meal_planner_model.dart';
+import 'package:track_me_updated/features/recipes/data/models/meal_planner_model/meal_planner_model/meal_planner_model.dart';
 import 'package:track_me_updated/features/recipes/data/models/recipe_model/recipe_model.dart';
 import 'package:track_me_updated/features/recipes/data/repo/recipe_repo.dart';
 
@@ -58,7 +58,7 @@ class RecipeRepoImplementation implements RecipeRepo {
   }
 
   @override
-  Future<Either<Failures, List<MealPlannerModel>>> getMealPlan(
+  Future<Either<Failures, MealPlannerModel>> getMealPlan(
       String day, targetCalories, diet, exclude) async {
     try {
       var data = await apiService.getRecipe('/mealplanner/generate', {
@@ -68,11 +68,8 @@ class RecipeRepoImplementation implements RecipeRepo {
         'diet': diet,
         'exclude': exclude
       });
-      List<MealPlannerModel> meals = [];
-      for (var item in data['meals']) {
-        meals.add(MealPlannerModel.fromJson(item));
-      }
-      return right(meals);
+
+      return right(MealPlannerModel.fromJson(data));
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));

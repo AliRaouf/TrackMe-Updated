@@ -83,7 +83,7 @@ class RecipeContainer extends StatelessWidget {
                                   width: 3.w,
                                 ),
                                 Text(
-                                  "${rating}",
+                                  "$rating",
                                   style: Theme.of(context).textTheme.bodySmall,
                                 ),
                               ],
