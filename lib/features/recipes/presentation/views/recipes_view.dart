@@ -21,6 +21,7 @@ class _RecipesViewState extends State<RecipesView> {
         leading: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: AnimatedSearchBar(
+              expanded: false,
               textController: textController,
               onSubmitted: (query) async {
                 if (query.isNotEmpty) {
@@ -29,6 +30,7 @@ class _RecipesViewState extends State<RecipesView> {
                       .fetchSearchRecipes(query: query);
                 }
               },
+              width: MediaQuery.sizeOf(context).width,
             )),
       ),
       body: BlocBuilder<FetchRecipesCubit, FetchRecipesState>(

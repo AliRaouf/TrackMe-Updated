@@ -37,6 +37,9 @@ class MainFeatureButtonGrid extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             MainFeatureButton(
+              onTap: () {
+                context.push('/exercises');
+              },
               color: Theme.of(context).brightness == Brightness.dark
                   ? kExerciseLibaryDark
                   : kExerciseLibaryLight,

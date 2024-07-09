@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:track_me_updated/core/app_router.dart';
 import 'package:track_me_updated/core/theme/themes.dart';
 import 'package:track_me_updated/core/utils/api_service.dart';
+import 'package:track_me_updated/features/exercises/data/repo/exercise_repo_implementation.dart';
+import 'package:track_me_updated/features/exercises/presentation/bloc/cubit/get_exercise_cubit.dart';
 import 'package:track_me_updated/features/recipes/data/repo/recipe_repo_implementation.dart';
 import 'package:track_me_updated/features/recipes/presentation/bloc/fetch_recipes/fetch_recipes_cubit.dart';
 import 'package:track_me_updated/features/recipes/presentation/bloc/meal_planner/meal_planner_cubit.dart';
@@ -37,6 +39,14 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (context) => MealPlannerCubit(
                     RecipeRepoImplementation(
+                      ApiService(
+                        Dio(),
+                      ),
+                    ),
+                  )),
+          BlocProvider(
+              create: (context) => GetExerciseCubit(
+                    ExerciseRepoImplementation(
                       ApiService(
                         Dio(),
                       ),

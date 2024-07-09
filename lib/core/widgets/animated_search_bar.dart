@@ -3,9 +3,15 @@ import 'package:flutter/material.dart';
 
 class AnimatedSearchBar extends StatefulWidget {
   const AnimatedSearchBar(
-      {super.key, required this.textController, required this.onSubmitted});
+      {super.key,
+      required this.textController,
+      required this.onSubmitted,
+      required this.width,
+      required this.expanded});
   final TextEditingController textController;
   final dynamic Function(String) onSubmitted;
+  final double width;
+  final bool expanded;
   @override
   State<AnimatedSearchBar> createState() => _AnimatedSearchBarState();
 }
@@ -14,7 +20,8 @@ class _AnimatedSearchBarState extends State<AnimatedSearchBar> {
   @override
   Widget build(BuildContext context) {
     return AnimSearchBar(
-      width: MediaQuery.sizeOf(context).width * 0.9,
+      autoFocus: widget.expanded,
+      width: widget.width,
       textController: widget.textController,
       onSuffixTap: () {
         setState(() {
