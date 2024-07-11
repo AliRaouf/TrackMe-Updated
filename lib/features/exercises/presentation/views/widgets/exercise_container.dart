@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:track_me_updated/features/exercises/presentation/views/widgets/exercise_image.dart';
 
 class ExerciseContainer extends StatelessWidget {
   const ExerciseContainer({
@@ -35,7 +36,7 @@ class ExerciseContainer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
-                width: 0.5.sw,
+                width: 0.55.sw,
                 child: Padding(
                   padding:
                       EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 8.w),
@@ -58,22 +59,16 @@ class ExerciseContainer extends StatelessWidget {
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                       Text(
-                        "Secondary Muscles: ${secondaryMuscles ?? ""}",
+                        "Other Muscles: ${secondaryMuscles ?? ""}",
                         style: Theme.of(context).textTheme.bodySmall,
+                        overflow: TextOverflow.visible,
                       ),
                     ],
                   ),
                 )),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
-              child: AspectRatio(
-                  aspectRatio: 1 / 1,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Image.network(
-                      exerciseGifUrl ?? "",
-                    ),
-                  )),
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+              child: ExerciseImage(exerciseGifUrl: exerciseGifUrl),
             ),
           ],
         ),

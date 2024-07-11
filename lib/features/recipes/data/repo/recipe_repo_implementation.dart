@@ -35,6 +35,7 @@ class RecipeRepoImplementation implements RecipeRepo {
       var data = await apiService.getRecipe('/recipes/complexSearch', {
         'query': query,
         'addRecipeNutrition': "true",
+        'addRecipeInstructions': "true",
         'sort': 'popularity',
         'apiKey': '67dbf1f8abf44194a1c0281cf9fdc1bc'
       });

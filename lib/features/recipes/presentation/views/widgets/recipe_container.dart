@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:track_me_updated/features/recipes/presentation/views/widgets/recipe_image.dart';
 
 class RecipeContainer extends StatelessWidget {
   const RecipeContainer(
@@ -93,13 +94,7 @@ class RecipeContainer extends StatelessWidget {
                 )),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 25.h, horizontal: 8.w),
-              child: AspectRatio(
-                  aspectRatio: 3 / 2,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Image.network(
-                        "https://img.spoonacular.com/recipes/$id-556x370.jpg"),
-                  )),
+              child: RecipeImage(id: id),
             ),
           ],
         ),

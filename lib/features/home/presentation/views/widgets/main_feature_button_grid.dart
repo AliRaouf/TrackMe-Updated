@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:track_me_updated/constants.dart';
 import 'package:track_me_updated/features/home/presentation/views/widgets/main_feature_button.dart';
+import 'package:track_me_updated/features/workout/presentation/bloc/workout/workout_cubit.dart';
 
 class MainFeatureButtonGrid extends StatelessWidget {
   const MainFeatureButtonGrid({super.key});
@@ -46,12 +48,28 @@ class MainFeatureButtonGrid extends StatelessWidget {
               text: 'Exercise Library',
               image: "assets/images/exercise.svg",
             ),
-            MainFeatureButton(
-              color: Theme.of(context).brightness == Brightness.dark
-                  ? kWorkoutTrackerDark
-                  : kWorkoutTrackerLight,
-              text: 'Workout Tracker',
-              image: "assets/images/workout.svg",
+            BlocBuilder<WorkoutCubit, WorkoutState>(
+              builder: (context, state) {
+                return MainFeatureButton(
+                  onTap: () {
+                    if (state is WorkoutPlanSuccess) {
+                      if (state.plans.isEmpty) {
+                        context.push('/workout');
+                      } else {
+                        context
+                            .read<WorkoutCubit>()
+                            .loadWorkoutDays(state.plans.first.id!);
+                        context.push('/workout/wokout_plan');
+                      }
+                    }
+                  },
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? kWorkoutTrackerDark
+                      : kWorkoutTrackerLight,
+                  text: 'Workout Tracker',
+                  image: "assets/images/workout.svg",
+                );
+              },
             ),
           ],
         ),

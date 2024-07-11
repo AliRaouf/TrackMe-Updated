@@ -72,32 +72,32 @@ final ThemeData nutritionLogLightTheme = lightTheme.copyWith(
 );
 final ThemeData healthyRecipesLightTheme = lightTheme.copyWith(
     colorScheme: lightTheme.colorScheme.copyWith(
-      primary: const Color(0xFF3ACBBA), // Light Green
-      outline: const Color(0xFF3ACBBA), // Light Green
+      primary: const Color(0xFF4FF885), // Light Green
+      outline: const Color(0xFF4FF885), // Light Green
     ),
     textTheme: lightTheme.textTheme.copyWith(),
     scaffoldBackgroundColor: const Color(0xffFAFAFA),
     elevatedButtonTheme: const ElevatedButtonThemeData(
         style: ButtonStyle(
-            backgroundColor: WidgetStatePropertyAll(Color(0xff3ACBBA)))),
+            backgroundColor: WidgetStatePropertyAll(Color(0xff4FF885)))),
     inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
     appBarTheme: const AppBarTheme(
-      backgroundColor: Color(0xFF3ACBBA), // Light Purple
+      backgroundColor: Color(0xFF4FF885), // Light Purple
       titleTextStyle: TextStyle(color: Color(0xFFFFFFFF), fontSize: 20),
     ));
 final ThemeData exercisesLibraryLightTheme = lightTheme.copyWith(
     colorScheme: lightTheme.colorScheme.copyWith(
-      primary: const Color(0xFF4DA4DB),
-      outline: const Color(0xFF4DA4DB),
+      primary: const Color(0xFF67c6e8),
+      outline: const Color(0xFF67c6e8),
     ),
     elevatedButtonTheme: const ElevatedButtonThemeData(
         style: ButtonStyle(
-            backgroundColor: WidgetStatePropertyAll(Color(0xff4da4db)))),
+            backgroundColor: WidgetStatePropertyAll(Color(0xff67c6e8)))),
     inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
     appBarTheme: lightTheme.appBarTheme.copyWith(
-      backgroundColor: const Color(0xFF4DA4DB),
+      backgroundColor: const Color(0xFF67c6e8),
     ));
 final ThemeData workoutTrackerLightTheme = lightTheme.copyWith(
   colorScheme: lightTheme.colorScheme.copyWith(
@@ -142,8 +142,16 @@ final ThemeData exercisesLibraryDarkTheme = darkTheme.copyWith(
     appBarTheme: darkTheme.appBarTheme.copyWith(
       backgroundColor: const Color(0xFF1D3557),
     ));
-final ThemeData workoutTrackerDarkTheme = lightTheme.copyWith(
-  colorScheme: lightTheme.colorScheme.copyWith(
-    primary: const Color(0xFF461D82), // Dark Purple
-  ),
-);
+final ThemeData workoutTrackerDarkTheme = darkTheme.copyWith(
+    colorScheme: lightTheme.colorScheme.copyWith(
+      primary: const Color(0xFF461D82), // Dark Purple
+      outline: const Color(0xFF461D82), // Dark Purple
+    ),
+    elevatedButtonTheme: const ElevatedButtonThemeData(
+        style: ButtonStyle(
+            backgroundColor: WidgetStatePropertyAll(Color(0xFF461D82)))),
+    inputDecorationTheme: InputDecorationTheme(
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+    appBarTheme: darkTheme.appBarTheme.copyWith(
+      backgroundColor: const Color(0xFF461D82),
+    ));
