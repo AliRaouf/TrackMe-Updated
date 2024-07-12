@@ -36,11 +36,11 @@ abstract class AppRouter {
               builder: (context, state) => const WeeklyScheduleView(),
             ),
             GoRoute(
-              path: 'wokout_split',
+              path: 'workout_split',
               builder: (context, state) => const WorkoutSplitView(),
             ),
             GoRoute(
-              path: 'wokout_plan',
+              path: 'workout_plan',
               builder: (context, state) => const WorkoutPlanView(),
             )
           ]),

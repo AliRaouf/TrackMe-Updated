@@ -13,7 +13,9 @@ import 'package:track_me_updated/features/recipes/presentation/bloc/meal_planner
 import 'package:track_me_updated/features/theme/data/bloc/theme/theme_cubit.dart';
 import 'package:track_me_updated/features/workout/data/helper/db_helper.dart';
 import 'package:track_me_updated/features/workout/data/repo/workout_repository.dart';
-import 'package:track_me_updated/features/workout/presentation/bloc/workout/workout_cubit.dart';
+import 'package:track_me_updated/features/workout/presentation/bloc/workout_day_cubit/workout_day_cubit.dart';
+import 'package:track_me_updated/features/workout/presentation/bloc/workout_exercise_cubit/workout_exercise_cubit.dart';
+import 'package:track_me_updated/features/workout/presentation/bloc/workout_plan_cubit/workout_plan_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,10 +33,17 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (context) => ThemeCubit()),
           BlocProvider(
-              create: (context) => WorkoutCubit(
-                  repository: WorkoutRepository(
-                      databaseHelper: DatabaseHelper.instance))
+              create: (context) => WorkoutPlanCubit(
+                  WorkoutRepository(databaseHelper: DatabaseHelper.instance))
                 ..loadWorkoutPlans()),
+          BlocProvider(
+              create: (context) => WorkoutDayCubit(
+                  repository: WorkoutRepository(
+                      databaseHelper: DatabaseHelper.instance))),
+          BlocProvider(
+              create: (context) => WorkoutExerciseCubit(
+                  repository: WorkoutRepository(
+                      databaseHelper: DatabaseHelper.instance))),
           BlocProvider(
               create: (context) => FetchRecipesCubit(
                     RecipeRepoImplementation(

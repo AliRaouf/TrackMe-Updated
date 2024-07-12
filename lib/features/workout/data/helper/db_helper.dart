@@ -50,6 +50,12 @@ class DatabaseHelper {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       day_id INTEGER NOT NULL,
       exercise_name TEXT NOT NULL,
+      body_part TEXT NOT NULL,
+      target TEXT NOT NULL,
+      secondary_muscles TEXT NOT NULL,
+      equipment_needed TEXT NOT NULL,
+      gif_url TEXT NOT NULL,
+      instructions TEXT NOT NULL,
       FOREIGN KEY (day_id) REFERENCES workout_days (id) ON DELETE CASCADE
     )
     ''');

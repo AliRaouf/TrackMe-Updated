@@ -3,11 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:track_me_updated/constants.dart';
 import 'package:track_me_updated/features/home/presentation/views/widgets/main_feature_button.dart';
-import 'package:track_me_updated/features/workout/presentation/bloc/workout/workout_cubit.dart';
+import 'package:track_me_updated/features/workout/presentation/bloc/workout_day_cubit/workout_day_cubit.dart';
+import 'package:track_me_updated/features/workout/presentation/bloc/workout_plan_cubit/workout_plan_cubit.dart';
 
-class MainFeatureButtonGrid extends StatelessWidget {
+class MainFeatureButtonGrid extends StatefulWidget {
   const MainFeatureButtonGrid({super.key});
 
+  @override
+  State<MainFeatureButtonGrid> createState() => _MainFeatureButtonGridState();
+}
+
+class _MainFeatureButtonGridState extends State<MainFeatureButtonGrid> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,31 +41,36 @@ class MainFeatureButtonGrid extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 32),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            MainFeatureButton(
-              onTap: () {
-                context.push('/exercises');
-              },
-              color: Theme.of(context).brightness == Brightness.dark
-                  ? kExerciseLibaryDark
-                  : kExerciseLibaryLight,
-              text: 'Exercise Library',
-              image: "assets/images/exercise.svg",
-            ),
-            BlocBuilder<WorkoutCubit, WorkoutState>(
-              builder: (context, state) {
-                return MainFeatureButton(
+        BlocBuilder<WorkoutPlanCubit, WorkoutPlanState>(
+          builder: (context, state) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                MainFeatureButton(
                   onTap: () {
+                    if (state is WorkoutPlanSuccess) {
+                      context
+                          .read<WorkoutDayCubit>()
+                          .loadWorkoutDays(state.plans.first.id!);
+                      context.push('/exercises');
+                    }
+                  },
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? kExerciseLibaryDark
+                      : kExerciseLibaryLight,
+                  text: 'Exercise Library',
+                  image: "assets/images/exercise.svg",
+                ),
+                MainFeatureButton(
+                  onTap: () async {
                     if (state is WorkoutPlanSuccess) {
                       if (state.plans.isEmpty) {
                         context.push('/workout');
                       } else {
                         context
-                            .read<WorkoutCubit>()
+                            .read<WorkoutDayCubit>()
                             .loadWorkoutDays(state.plans.first.id!);
-                        context.push('/workout/wokout_plan');
+                        context.push('/workout/workout_plan');
                       }
                     }
                   },
@@ -68,10 +79,10 @@ class MainFeatureButtonGrid extends StatelessWidget {
                       : kWorkoutTrackerLight,
                   text: 'Workout Tracker',
                   image: "assets/images/workout.svg",
-                );
-              },
-            ),
-          ],
+                )
+              ],
+            );
+          },
         ),
       ],
     );

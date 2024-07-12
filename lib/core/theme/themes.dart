@@ -143,15 +143,16 @@ final ThemeData exercisesLibraryDarkTheme = darkTheme.copyWith(
       backgroundColor: const Color(0xFF1D3557),
     ));
 final ThemeData workoutTrackerDarkTheme = darkTheme.copyWith(
-    colorScheme: lightTheme.colorScheme.copyWith(
-      primary: const Color(0xFF461D82), // Dark Purple
-      outline: const Color(0xFF461D82), // Dark Purple
+    colorScheme: darkTheme.colorScheme.copyWith(
+      primary: const Color(0xFF7E57C2), // Dark Purple
+      outline: const Color(0xFF7E57C2), // Dark Purple
+      secondary: const Color(0xFF1e1e1e),
     ),
     elevatedButtonTheme: const ElevatedButtonThemeData(
         style: ButtonStyle(
-            backgroundColor: WidgetStatePropertyAll(Color(0xFF461D82)))),
+            backgroundColor: WidgetStatePropertyAll(Color(0xFF7E57C2)))),
     inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
     appBarTheme: darkTheme.appBarTheme.copyWith(
-      backgroundColor: const Color(0xFF461D82),
+      backgroundColor: const Color(0xFF7E57C2),
     ));
