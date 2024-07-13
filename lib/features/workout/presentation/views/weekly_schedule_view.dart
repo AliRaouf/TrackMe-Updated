@@ -58,7 +58,7 @@ class _WeeklyScheduleViewState extends State<WeeklyScheduleView> {
                 .map((entry) => entry.key)
                 .toList();
             context.read<WorkoutPlanCubit>().addWorkoutPlan(WorkoutPlan(
-                  name: "WeeklSchedule",
+                  name: "WeeklySchedule",
                   type: "WeeklySchedule",
                 ));
             for (String day in selectedDays) {

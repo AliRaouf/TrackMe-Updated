@@ -44,7 +44,9 @@ class WorkoutTrackerViewBody extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodySmall),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.push('/workout/workout_split');
+                },
                 child: Text('Workout Split',
                     style: Theme.of(context).textTheme.bodySmall),
               ),
