@@ -12,7 +12,7 @@ class DatabaseHelper {
 
   Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = await _initDB('workout.db');
+    _database = await _initDB('trackme.db');
     return _database!;
   }
 
@@ -57,6 +57,37 @@ class DatabaseHelper {
       gif_url TEXT NOT NULL,
       instructions TEXT NOT NULL,
       FOREIGN KEY (day_id) REFERENCES workout_days (id) ON DELETE CASCADE
+    )
+    ''');
+
+    await db.execute('''
+    CREATE TABLE favorite_exercises (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      exercise_name TEXT NOT NULL,
+      body_part TEXT NOT NULL,
+      target TEXT NOT NULL,
+      secondary_muscles TEXT NOT NULL,
+      equipment_needed TEXT NOT NULL,
+      gif_url TEXT NOT NULL,
+      instructions TEXT NOT NULL
+    )
+    ''');
+
+    await db.execute('''
+    CREATE TABLE favorite_recipes (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT NOT NULL,
+      readyIn TEXT NOT NULL,
+      recipeID TEXT NOT NULL,
+      image TEXT NOT NULL,
+      serving TEXT NOT NULL,
+      instructions TEXT NOT NULL,
+      calories TEXT NOT NULL,
+      fat TEXT NOT NULL,
+      carbs TEXT NOT NULL,
+      fiber TEXT NOT NULL,
+      satFat TEXT NOT NULL,
+      protein TEXT NOT NULL
     )
     ''');
   }

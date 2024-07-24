@@ -49,9 +49,11 @@ class _MainFeatureButtonGridState extends State<MainFeatureButtonGrid> {
                 MainFeatureButton(
                   onTap: () {
                     if (state is WorkoutPlanSuccess) {
-                      context
-                          .read<WorkoutDayCubit>()
-                          .loadWorkoutDays(state.plans.first.id!);
+                      if (state.plans.isNotEmpty) {
+                        context
+                            .read<WorkoutDayCubit>()
+                            .loadWorkoutDays(state.plans.first.id!);
+                      }
                       context.push('/exercises');
                     }
                   },

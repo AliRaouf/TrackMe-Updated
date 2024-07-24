@@ -15,15 +15,16 @@ class WorkoutSplitView extends StatefulWidget {
 }
 
 class _WorkoutSplitViewState extends State<WorkoutSplitView> {
-  Map<String, bool> days = {
-    '1 day': false,
-    '2 days': false,
-    '3 days': false,
-    '4 days': false,
-    '5 days': false,
-    '6 days': false,
-    '7 days': false,
-  };
+  final List<String> days = [
+    '1 day',
+    '2 days',
+    '3 days',
+    '4 days',
+    '5 days',
+    '6 days',
+    '7 days',
+  ];
+  String selectedDay = '1 day';
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +40,14 @@ class _WorkoutSplitViewState extends State<WorkoutSplitView> {
               style: Theme.of(context).textTheme.titleMedium),
         ),
         body: Column(
-          children: days.keys.map((day) {
-            return CheckboxListTile(
-              selectedTileColor: Colors.white,
+          children: days.map((day) {
+            return RadioListTile<String>(
               title: Text(day, style: Theme.of(context).textTheme.bodyMedium),
-              value: days[day],
+              value: day,
+              groupValue: selectedDay,
               onChanged: (value) {
                 setState(() {
-                  days[day] = value!;
+                  selectedDay = value!;
                 });
               },
             );
@@ -55,26 +56,20 @@ class _WorkoutSplitViewState extends State<WorkoutSplitView> {
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.check),
           onPressed: () async {
-            final selectedDays = days.entries
-                .where((entry) => entry.value)
-                .map((entry) => entry.key)
-                .toList();
+            final int selectedDays = int.parse(selectedDay.split(' ')[0]);
+            final renamedDays = await _renameDays(context, selectedDays);
+            if (renamedDays != null) {
+              print(renamedDays);
+              context.read<WorkoutPlanCubit>().addWorkoutPlan(
+                  WorkoutPlan(name: "WorkoutSplit", type: "Workout"));
 
-            if (selectedDays.isNotEmpty) {
-              final renamedDays = await _renameDays(context, selectedDays);
-              if (renamedDays != null) {
-                print(renamedDays);
-                context.read<WorkoutPlanCubit>().addWorkoutPlan(
-                    WorkoutPlan(name: "WorkoutSplit", type: "Workout"));
-
-                for (String day in renamedDays) {
-                  context.read<WorkoutDayCubit>().addWorkoutDay(WorkoutDay(
-                        planId: 1,
-                        name: day,
-                      ));
-                }
-                context.push('/workout/workout_plan');
+              for (String day in renamedDays) {
+                context.read<WorkoutDayCubit>().addWorkoutDay(WorkoutDay(
+                      planId: 1,
+                      name: day,
+                    ));
               }
+              context.push('/workout/workout_plan');
             }
           },
         ),
@@ -83,10 +78,10 @@ class _WorkoutSplitViewState extends State<WorkoutSplitView> {
   }
 
   Future<List<String>?> _renameDays(
-      BuildContext context, List<String> selectedDays) async {
-    List<String> renamedDays = List.from(selectedDays);
+      BuildContext context, int selectedDays) async {
+    List<String> renamedDays = [];
 
-    for (int i = 0; i < selectedDays.length; i++) {
+    for (int i = 0; i < selectedDays; i++) {
       String? newName = await showDialog<String>(
         context: context,
         builder: (context) {
@@ -121,7 +116,7 @@ class _WorkoutSplitViewState extends State<WorkoutSplitView> {
       if (newName == null) {
         return null;
       }
-      renamedDays[i] = newName;
+      renamedDays.add(newName);
     }
 
     return renamedDays;

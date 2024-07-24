@@ -86,22 +86,6 @@ class SelectedRecipeViewBody extends StatelessWidget {
                       );
                     }),
               ),
-              // SingleChildScrollView(
-              //   child: Column(
-              //     crossAxisAlignment: CrossAxisAlignment.start,
-              //     children: recipeModel.analyzedInstructions?[0].steps
-              //             ?.map((step) => Padding(
-              //                   padding:
-              //                       const EdgeInsets.symmetric(vertical: 4.0),
-              //                   child: Text(
-              //                     "${step.number}) ${step.step}",
-              //                     style: Theme.of(context).textTheme.bodySmall,
-              //                   ),
-              //                 ))
-              //             .toList() ??
-              //         [],
-              //   ),
-              // ),
             ],
           ),
         ],

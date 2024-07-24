@@ -7,7 +7,10 @@ import 'package:track_me_updated/core/theme/themes.dart';
 import 'package:track_me_updated/core/utils/api_service.dart';
 import 'package:track_me_updated/features/exercises/data/repo/exercise_repo_implementation.dart';
 import 'package:track_me_updated/features/exercises/presentation/bloc/cubit/get_exercise_cubit.dart';
+import 'package:track_me_updated/features/recipes/data/helper/favorite_recipes_helper.dart';
+import 'package:track_me_updated/features/recipes/data/repo/favorite_recipe_repo.dart';
 import 'package:track_me_updated/features/recipes/data/repo/recipe_repo_implementation.dart';
+import 'package:track_me_updated/features/recipes/presentation/bloc/cubit/favorite_recipes_cubit.dart';
 import 'package:track_me_updated/features/recipes/presentation/bloc/fetch_recipes/fetch_recipes_cubit.dart';
 import 'package:track_me_updated/features/recipes/presentation/bloc/meal_planner/meal_planner_cubit.dart';
 import 'package:track_me_updated/features/theme/data/bloc/theme/theme_cubit.dart';
@@ -36,6 +39,11 @@ class MyApp extends StatelessWidget {
               create: (context) => WorkoutPlanCubit(
                   WorkoutRepository(databaseHelper: DatabaseHelper.instance))
                 ..loadWorkoutPlans()),
+          BlocProvider(
+              create: (context) => FavoriteRecipesCubit(
+                  FavoriteRecipeRepository(
+                      favoriteRecipesHelper: FavoriteRecipesHelper.instance))
+                ..loadFavoriteRecipes()),
           BlocProvider(
               create: (context) => WorkoutDayCubit(
                   repository: WorkoutRepository(
