@@ -63,6 +63,7 @@ class DatabaseHelper {
     await db.execute('''
     CREATE TABLE favorite_exercises (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
+      day TEXT NOT NULL,
       exercise_name TEXT NOT NULL,
       body_part TEXT NOT NULL,
       target TEXT NOT NULL,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:track_me_updated/core/styles.dart';
 
 class MainFeatureButton extends StatelessWidget {
   const MainFeatureButton(
@@ -31,12 +33,10 @@ class MainFeatureButton extends StatelessWidget {
                     height: 80,
                     width: 80,
                     // ignore: deprecated_member_use
-                    color: Theme.of(context).brightness == Brightness.dark
-                        ? Colors.white
-                        : Colors.black,
+                    color: Colors.white,
                   ),
                   const SizedBox(height: 8),
-                  Text(text, style: Theme.of(context).textTheme.titleSmall)
+                  Text(text, style: TextStyles.title18Dark)
                 ],
               ),
             )),

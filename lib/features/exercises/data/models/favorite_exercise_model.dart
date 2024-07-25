@@ -2,7 +2,7 @@ import 'dart:convert';
 
 class FavoriteExerciseModel {
   final int? id;
-  final int dayId;
+  final String day;
   final String exerciseName;
   final String bodyPart;
   final String target;
@@ -13,7 +13,7 @@ class FavoriteExerciseModel {
 
   FavoriteExerciseModel(
       {this.id,
-      required this.dayId,
+      required this.day,
       required this.exerciseName,
       required this.bodyPart,
       required this.target,
@@ -25,7 +25,7 @@ class FavoriteExerciseModel {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'day_id': dayId,
+      'day': day,
       'exercise_name': exerciseName,
       'body_part': bodyPart,
       'target': target,
@@ -39,7 +39,7 @@ class FavoriteExerciseModel {
   factory FavoriteExerciseModel.fromMap(Map<String, dynamic> map) {
     return FavoriteExerciseModel(
       id: map['id'],
-      dayId: map['day_id'],
+      day: map['day'],
       exerciseName: map['exercise_name'],
       bodyPart: map['body_part'],
       target: map['target'],

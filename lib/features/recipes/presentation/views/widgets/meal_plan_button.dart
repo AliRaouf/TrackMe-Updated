@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:track_me_updated/core/styles.dart';
 import 'package:track_me_updated/features/recipes/presentation/bloc/meal_planner/meal_planner_cubit.dart';
 
 class MealPlanButton extends StatelessWidget {
@@ -37,7 +38,7 @@ class MealPlanButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 12.0),
           child: Text(
             "Get meal plan",
-            style: Theme.of(context).textTheme.titleSmall,
+            style: TextStyles.title18Dark,
           ),
         ));
   }

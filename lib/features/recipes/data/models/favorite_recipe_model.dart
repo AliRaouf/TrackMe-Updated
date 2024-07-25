@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:track_me_updated/features/recipes/data/models/recipe_model/analyzed_instruction.dart';
-
 class FavoriteRecipeModel {
   final int? id;
   final String title;

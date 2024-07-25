@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:track_me_updated/features/recipes/presentation/bloc/cubit/favorite_recipes_cubit.dart';
+import 'package:track_me_updated/features/recipes/presentation/bloc/favorite_recipes/favorite_recipes_cubit.dart';
 import 'package:track_me_updated/features/recipes/presentation/views/widgets/recipe_container.dart';
 
 class FavoriteRecipesViewBody extends StatelessWidget {

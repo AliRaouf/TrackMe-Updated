@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:track_me_updated/features/recipes/data/models/favorite_recipe_model.dart';
 import 'package:track_me_updated/features/recipes/data/models/recipe_model/recipe_model.dart';
-import 'package:track_me_updated/features/recipes/presentation/bloc/cubit/favorite_recipes_cubit.dart';
+import 'package:track_me_updated/features/recipes/presentation/bloc/favorite_recipes/favorite_recipes_cubit.dart';
 import 'package:track_me_updated/features/recipes/presentation/views/widgets/selected_recipe_view_body.dart';
 
 class SelectedRecipeView extends StatelessWidget {
@@ -16,7 +16,6 @@ class SelectedRecipeView extends StatelessWidget {
             BlocBuilder<FavoriteRecipesCubit, FavoriteRecipesState>(
               builder: (context, state) {
                 if (state is FavoriteRecipesSuccess) {
-                  print(state.recipes);
                   bool isInFavorites = state.recipes
                       .any((recipe) => recipe.title == recipeModel.title);
                   return IconButton(
@@ -65,10 +64,9 @@ class SelectedRecipeView extends StatelessWidget {
                     color: isInFavorites ? Colors.red : Colors.white,
                   );
                 } else if (state is FavoriteRecipesError) {
-                  print(state.errMessage);
-                  return Icon(Icons.error);
+                  return const Icon(Icons.error);
                 } else {
-                  return CircularProgressIndicator();
+                  return const CircularProgressIndicator();
                 }
               },
             )

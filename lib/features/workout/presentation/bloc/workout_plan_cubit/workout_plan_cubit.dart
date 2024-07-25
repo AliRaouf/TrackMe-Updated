@@ -23,10 +23,8 @@ class WorkoutPlanCubit extends Cubit<WorkoutPlanState> {
     try {
       await repository.addWorkoutPlan(plan);
       final plans = await repository.getWorkoutPlans();
-      print("Success");
       emit(WorkoutPlanSuccess(plans));
     } catch (e) {
-      print("fail");
       emit(const WorkoutPlanError("Failed to add workout plan"));
     }
   }
@@ -36,10 +34,8 @@ class WorkoutPlanCubit extends Cubit<WorkoutPlanState> {
     try {
       await repository.updateWorkoutPlan(plan);
       final plans = await repository.getWorkoutPlans();
-      print("Success");
       emit(WorkoutPlanSuccess(plans));
     } catch (e) {
-      print("fail");
       emit(const WorkoutPlanError("Failed to update workout plan"));
     }
   }
@@ -49,10 +45,8 @@ class WorkoutPlanCubit extends Cubit<WorkoutPlanState> {
     try {
       await repository.deleteWorkoutPlan(id);
       final plans = await repository.getWorkoutPlans();
-      print("Success");
       emit(WorkoutPlanSuccess(plans));
     } catch (e) {
-      print("fail");
       emit(const WorkoutPlanError("Failed to delete workout plan"));
     }
   }

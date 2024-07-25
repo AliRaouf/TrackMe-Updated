@@ -11,7 +11,7 @@ class HomeAppbar extends StatelessWidget {
       children: [
         Expanded(
           child: Text("Welcome to your health journey!",
-              style: Theme.of(context).textTheme.titleLarge),
+              style: Theme.of(context).textTheme.titleMedium),
         ),
         IconButton.outlined(
             onPressed: () {

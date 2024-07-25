@@ -5,12 +5,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:track_me_updated/core/app_router.dart';
 import 'package:track_me_updated/core/theme/themes.dart';
 import 'package:track_me_updated/core/utils/api_service.dart';
+import 'package:track_me_updated/features/exercises/data/helper/favorite_exercise_helper.dart';
 import 'package:track_me_updated/features/exercises/data/repo/exercise_repo_implementation.dart';
-import 'package:track_me_updated/features/exercises/presentation/bloc/cubit/get_exercise_cubit.dart';
+import 'package:track_me_updated/features/exercises/data/repo/favorite_exercise_repo.dart';
+import 'package:track_me_updated/features/exercises/presentation/bloc/favorite_exercise/favorite_exercise_cubit.dart';
+import 'package:track_me_updated/features/exercises/presentation/bloc/get_exercise/get_exercise_cubit.dart';
 import 'package:track_me_updated/features/recipes/data/helper/favorite_recipes_helper.dart';
 import 'package:track_me_updated/features/recipes/data/repo/favorite_recipe_repo.dart';
 import 'package:track_me_updated/features/recipes/data/repo/recipe_repo_implementation.dart';
-import 'package:track_me_updated/features/recipes/presentation/bloc/cubit/favorite_recipes_cubit.dart';
+import 'package:track_me_updated/features/recipes/presentation/bloc/favorite_recipes/favorite_recipes_cubit.dart';
 import 'package:track_me_updated/features/recipes/presentation/bloc/fetch_recipes/fetch_recipes_cubit.dart';
 import 'package:track_me_updated/features/recipes/presentation/bloc/meal_planner/meal_planner_cubit.dart';
 import 'package:track_me_updated/features/theme/data/bloc/theme/theme_cubit.dart';
@@ -44,6 +47,10 @@ class MyApp extends StatelessWidget {
                   FavoriteRecipeRepository(
                       favoriteRecipesHelper: FavoriteRecipesHelper.instance))
                 ..loadFavoriteRecipes()),
+          BlocProvider(
+              create: (context) => FavoriteExerciseCubit(FavoriteExerciseRepo(
+                  favoriteExerciseHelper: FavoriteExerciseHelper.instance))
+                ..loadFavoriteExercise()),
           BlocProvider(
               create: (context) => WorkoutDayCubit(
                   repository: WorkoutRepository(

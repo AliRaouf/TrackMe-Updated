@@ -41,7 +41,7 @@ class _WorkoutPlanViewState extends State<WorkoutPlanView>
                     style: TextStyles.title22Dark,
                   ),
                   bottom: TabBar(
-                    indicatorColor: kWorkoutTrackerDark,
+                    indicatorColor: kWorkoutTrackerLight,
                     labelColor: Theme.of(context).colorScheme.onPrimary,
                     controller: _tabController,
                     tabs: tabs,

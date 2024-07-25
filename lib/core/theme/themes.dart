@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:track_me_updated/constants.dart';
 import 'package:track_me_updated/core/styles.dart';
 
 // Light Theme
@@ -19,7 +20,7 @@ final ThemeData lightTheme = ThemeData(
       bodyMedium: TextStyles.body20Light, // Dark Gray
       titleMedium: TextStyles.title22Light, // Light Gray
       titleSmall: TextStyles.title18Light, // Light Gray
-      titleLarge: TextStyles.title32Light),
+      titleLarge: TextStyles.title32Dark),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
         backgroundColor: const Color(0xFFFF4081)), // Pink
@@ -72,38 +73,46 @@ final ThemeData nutritionLogLightTheme = lightTheme.copyWith(
 );
 final ThemeData healthyRecipesLightTheme = lightTheme.copyWith(
     colorScheme: lightTheme.colorScheme.copyWith(
-      primary: const Color(0xFF4FF885), // Light Green
-      outline: const Color(0xFF4FF885), // Light Green
+      primary: kHealtyRecipesLight, // Light Green
+      outline: kHealtyRecipesLight, // Light Green
     ),
     textTheme: lightTheme.textTheme.copyWith(),
     scaffoldBackgroundColor: const Color(0xffFAFAFA),
     elevatedButtonTheme: const ElevatedButtonThemeData(
         style: ButtonStyle(
-            backgroundColor: WidgetStatePropertyAll(Color(0xff4FF885)))),
+            backgroundColor: WidgetStatePropertyAll(kHealtyRecipesLight))),
     inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
     appBarTheme: const AppBarTheme(
-      backgroundColor: Color(0xFF4FF885), // Light Purple
+      backgroundColor: kHealtyRecipesLight, // Light Purple
       titleTextStyle: TextStyle(color: Color(0xFFFFFFFF), fontSize: 20),
     ));
 final ThemeData exercisesLibraryLightTheme = lightTheme.copyWith(
     colorScheme: lightTheme.colorScheme.copyWith(
-      primary: const Color(0xFF67c6e8),
-      outline: const Color(0xFF67c6e8),
+      primary: kExerciseLibaryLight,
+      outline: kExerciseLibaryLight,
     ),
     elevatedButtonTheme: const ElevatedButtonThemeData(
         style: ButtonStyle(
-            backgroundColor: WidgetStatePropertyAll(Color(0xff67c6e8)))),
+            backgroundColor: WidgetStatePropertyAll(kExerciseLibaryLight))),
     inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
     appBarTheme: lightTheme.appBarTheme.copyWith(
-      backgroundColor: const Color(0xFF67c6e8),
+      backgroundColor: kExerciseLibaryLight,
     ));
 final ThemeData workoutTrackerLightTheme = lightTheme.copyWith(
-  colorScheme: lightTheme.colorScheme.copyWith(
-    primary: const Color(0xFFCEA3FF), // Light Purple
-  ),
-);
+    colorScheme: lightTheme.colorScheme.copyWith(
+      primary: kWorkoutTrackerLight, // Light Purple
+      outline: kWorkoutTrackerLight, // Light Purple
+    ),
+    elevatedButtonTheme: const ElevatedButtonThemeData(
+        style: ButtonStyle(
+            backgroundColor: WidgetStatePropertyAll(kWorkoutTrackerLight))),
+    inputDecorationTheme: InputDecorationTheme(
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+    appBarTheme: lightTheme.appBarTheme.copyWith(
+      backgroundColor: kWorkoutTrackerLight,
+    ));
 
 final ThemeData nutritionDarkTheme = darkTheme.copyWith(
   colorScheme: darkTheme.colorScheme.copyWith(

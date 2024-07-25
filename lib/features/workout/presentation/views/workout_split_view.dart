@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:track_me_updated/core/styles.dart';
 import 'package:track_me_updated/core/theme/themes.dart';
 import 'package:track_me_updated/features/workout/data/models/workout_day_model.dart';
 import 'package:track_me_updated/features/workout/data/models/workout_plan_model.dart';
@@ -37,7 +38,7 @@ class _WorkoutSplitViewState extends State<WorkoutSplitView> {
           automaticallyImplyLeading: false,
           centerTitle: true,
           title: Text('How many days do you workout?',
-              style: Theme.of(context).textTheme.titleMedium),
+              style: TextStyles.title22Dark),
         ),
         body: Column(
           children: days.map((day) {
@@ -59,7 +60,6 @@ class _WorkoutSplitViewState extends State<WorkoutSplitView> {
             final int selectedDays = int.parse(selectedDay.split(' ')[0]);
             final renamedDays = await _renameDays(context, selectedDays);
             if (renamedDays != null) {
-              print(renamedDays);
               context.read<WorkoutPlanCubit>().addWorkoutPlan(
                   WorkoutPlan(name: "WorkoutSplit", type: "Workout"));
 
@@ -100,13 +100,13 @@ class _WorkoutSplitViewState extends State<WorkoutSplitView> {
                 onPressed: () {
                   Navigator.of(context).pop(controller.text);
                 },
-                child: Text('OK'),
+                child: const Text('OK'),
               ),
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text('Cancel'),
+                child: const Text('Cancel'),
               ),
             ],
           );
