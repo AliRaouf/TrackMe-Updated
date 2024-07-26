@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:track_me_updated/features/exercises/presentation/bloc/favorite_exercise/favorite_exercise_cubit.dart';
+import 'package:track_me_updated/features/exercises/presentation/views/single_favorite_exercise_view.dart';
 import 'package:track_me_updated/features/exercises/presentation/views/widgets/exercise_container.dart';
 
 class FavoriteExercisesViewBody extends StatelessWidget {
@@ -14,12 +16,18 @@ class FavoriteExercisesViewBody extends StatelessWidget {
           if (state.exercises.isNotEmpty) {
             return ListView.builder(
                 itemBuilder: (context, index) {
-                  return ExerciseContainer(
-                    title: state.exercises[index].exerciseName,
-                    bodyPart: state.exercises[index].bodyPart,
-                    exerciseGifUrl: state.exercises[index].gifUrl,
-                    targets: state.exercises[index].target,
-                    secondaryMuscles: state.exercises[index].secondaryMuscles,
+                  return GestureDetector(
+                    onTap: () => pushScreen(context,
+                        screen: SingleFavoriteExerciseView(
+                            favoriteExerciseModel: state.exercises[index]),
+                        withNavBar: true),
+                    child: ExerciseContainer(
+                      title: state.exercises[index].exerciseName,
+                      bodyPart: state.exercises[index].bodyPart,
+                      exerciseGifUrl: state.exercises[index].gifUrl,
+                      targets: state.exercises[index].target,
+                      secondaryMuscles: state.exercises[index].secondaryMuscles,
+                    ),
                   );
                 },
                 itemCount: state.exercises.length);

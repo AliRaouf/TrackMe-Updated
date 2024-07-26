@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:track_me_updated/features/recipes/presentation/bloc/favorite_recipes/favorite_recipes_cubit.dart';
+import 'package:track_me_updated/features/recipes/presentation/views/selected_favorite_recipe_view.dart';
 import 'package:track_me_updated/features/recipes/presentation/views/widgets/recipe_container.dart';
 
 class FavoriteRecipesViewBody extends StatelessWidget {
@@ -14,11 +16,18 @@ class FavoriteRecipesViewBody extends StatelessWidget {
           if (state.recipes.isNotEmpty) {
             return ListView.builder(
                 itemBuilder: (context, index) {
-                  return RecipeContainer(
-                    title: state.recipes[index].title,
-                    readyIn: state.recipes[index].readyIn,
-                    id: state.recipes[index].recipeID,
-                    servings: state.recipes[index].serving,
+                  return GestureDetector(
+                    onTap: () => pushScreen(context,
+                        screen: SelectedFavoriteRecipeView(
+                          favoriteRecipeModel: state.recipes[index],
+                        ),
+                        withNavBar: true),
+                    child: RecipeContainer(
+                      title: state.recipes[index].title,
+                      readyIn: state.recipes[index].readyIn,
+                      id: state.recipes[index].recipeID,
+                      servings: state.recipes[index].serving,
+                    ),
                   );
                 },
                 itemCount: state.recipes.length);
