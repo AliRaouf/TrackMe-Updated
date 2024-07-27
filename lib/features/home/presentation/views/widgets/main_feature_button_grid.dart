@@ -22,6 +22,9 @@ class _MainFeatureButtonGridState extends State<MainFeatureButtonGrid> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             MainFeatureButton(
+              onTap: () {
+                context.push('/nutrition');
+              },
               color: Theme.of(context).brightness == Brightness.dark
                   ? kNutritionLogDark
                   : kNutritionLogLight,

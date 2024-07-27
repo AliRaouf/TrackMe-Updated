@@ -91,6 +91,40 @@ class DatabaseHelper {
       protein TEXT NOT NULL
     )
     ''');
+    await db.execute('''
+    CREATE TABLE target_nutrition (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      calories INTEGER NOT NULL,
+      protein INTEGER NOT NULL,
+      carbohydrates INTEGER NOT NULL,
+      fat INTEGER NOT NULL,
+      fiber INTEGER NOT NULL,
+      iron INTEGER NOT NULL
+    )
+    ''');
+    await db.insert('target_nutrition', {
+      'calories': 0,
+      'protein': 0,
+      'carbohydrates': 0,
+      'fat': 0,
+      'fiber': 0,
+      'iron': 0
+    });
+    await db.execute('''
+    CREATE TABLE food_log (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      description Text NOT NULL,
+      date TEXT NOT NULL,
+      food_name TEXT NOT NULL,
+      calories INTEGER NOT NULL,
+      protein INTEGER NOT NULL,
+      carbohydrates INTEGER NOT NULL,
+      fat INTEGER NOT NULL,
+      fiber INTEGER NOT NULL,
+      iron INTEGER NOT NULL
+    )
+    ''');
   }
 
   Future<void> close() async {
