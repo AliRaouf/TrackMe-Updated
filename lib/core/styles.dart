@@ -22,6 +22,10 @@ abstract class TextStyles {
       fontSize: 16,
       color: const Color(0xffFFFFFF),
       fontWeight: FontWeight.w500);
+  static final body12Dark = GoogleFonts.roboto(
+      fontSize: 12,
+      color: const Color(0xffFFFFFF),
+      fontWeight: FontWeight.w400);
   static final title32Light = GoogleFonts.roboto(
       fontSize: 32,
       color: const Color(0xff121212),
@@ -42,4 +46,8 @@ abstract class TextStyles {
       fontSize: 16,
       color: const Color(0xff121212),
       fontWeight: FontWeight.w500);
+  static final body12Light = GoogleFonts.roboto(
+      fontSize: 12,
+      color: const Color(0xff121212),
+      fontWeight: FontWeight.w400);
 }

@@ -10,8 +10,11 @@ import 'package:track_me_updated/features/exercises/data/repo/exercise_repo_impl
 import 'package:track_me_updated/features/exercises/data/repo/favorite_exercise_repo.dart';
 import 'package:track_me_updated/features/exercises/presentation/bloc/favorite_exercise/favorite_exercise_cubit.dart';
 import 'package:track_me_updated/features/exercises/presentation/bloc/get_exercise/get_exercise_cubit.dart';
+import 'package:track_me_updated/features/nutrition/data/helper/food_log_helper.dart';
 import 'package:track_me_updated/features/nutrition/data/helper/nutrition_helper.dart';
+import 'package:track_me_updated/features/nutrition/data/repo/food_log_repo.dart';
 import 'package:track_me_updated/features/nutrition/data/repo/target_nutrition_repo.dart';
+import 'package:track_me_updated/features/nutrition/presentation/bloc/food_log/food_log_cubit.dart';
 import 'package:track_me_updated/features/nutrition/presentation/bloc/target_nutrition/target_nutrition_cubit.dart';
 import 'package:track_me_updated/features/recipes/data/helper/favorite_recipes_helper.dart';
 import 'package:track_me_updated/features/recipes/data/repo/favorite_recipe_repo.dart';
@@ -45,6 +48,10 @@ class MyApp extends StatelessWidget {
               create: (context) => TargetNutritionCubit(TargetNutritionRepo(
                   nutritionHelper: NutritionHelper.instance))
                 ..getTargetNutrition()),
+          BlocProvider(
+              create: (context) => FoodLogCubit(
+                  FoodLogRepo(foodLogHelper: FoodLogHelper.instance))
+                ..getFoodLog()),
           BlocProvider(
               create: (context) => WorkoutPlanCubit(
                   WorkoutRepository(databaseHelper: DatabaseHelper.instance))

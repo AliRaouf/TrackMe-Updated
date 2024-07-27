@@ -8,3 +8,15 @@ sealed class FoodLogState extends Equatable {
 }
 
 final class FoodLogInitial extends FoodLogState {}
+
+final class FoodLogLoading extends FoodLogState {}
+
+final class FoodLogSuccess extends FoodLogState {
+  final List<FoodLogModel> foodLogs;
+  const FoodLogSuccess(this.foodLogs);
+}
+
+final class FoodLogError extends FoodLogState {
+  final String errMessage;
+  const FoodLogError(this.errMessage);
+}

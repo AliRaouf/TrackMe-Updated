@@ -116,7 +116,6 @@ class DatabaseHelper {
       name TEXT NOT NULL,
       description Text NOT NULL,
       date TEXT NOT NULL,
-      food_name TEXT NOT NULL,
       calories INTEGER NOT NULL,
       protein INTEGER NOT NULL,
       carbohydrates INTEGER NOT NULL,

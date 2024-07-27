@@ -2,10 +2,10 @@ class NutritionUtils {
   static String remainingString(int number, int targetnumber) {
     if (number == 0) {
       return "Add your Target Now !";
-    } else if (number - targetnumber <= 0) {
+    } else if (targetnumber - number <= 0) {
       return "Congrats You Finished it !";
     } else {
-      return "${number - targetnumber} Remaining";
+      return "${targetnumber - number} Remaining";
     }
   }
 

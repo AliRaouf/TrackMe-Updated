@@ -119,7 +119,7 @@ class NutritionContainer extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Text(remaining, style: TextStyles.body16Dark),
+                    Text(remaining, style: TextStyles.body12Dark),
                   ],
                 ),
                 LinearPercentIndicator(
