@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:track_me_updated/core/styles.dart';
 import 'package:track_me_updated/features/nutrition/data/models/food_log_model.dart';
+import 'package:track_me_updated/features/nutrition/presentation/bloc/food_log/food_log_cubit.dart';
 
 class FoodLogUtils {
   static int sumCalories(List<FoodLogModel> foodLogs) {
@@ -102,6 +105,39 @@ class FoodLogUtils {
           ),
         ],
       ),
+    );
+  }
+
+  static void showDeleteDialog(BuildContext context, FoodLogModel foodLog) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Delete Food Log'),
+          content: const Text('Are you sure you want to delete this food log?'),
+          actions: <Widget>[
+            TextButton(
+              child: Text(
+                'Cancel',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text(
+                'Delete',
+                style: TextStyles.cta18,
+              ),
+              onPressed: () {
+                context.read<FoodLogCubit>().deleteFoodLog(foodLog);
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

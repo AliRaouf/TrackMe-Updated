@@ -50,4 +50,6 @@ abstract class TextStyles {
       fontSize: 12,
       color: const Color(0xff121212),
       fontWeight: FontWeight.w400);
+  static final cta18 = GoogleFonts.roboto(
+      fontSize: 18, color: Colors.red, fontWeight: FontWeight.w600);
 }

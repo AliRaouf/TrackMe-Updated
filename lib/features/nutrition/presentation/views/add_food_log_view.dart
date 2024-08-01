@@ -15,7 +15,6 @@ class AddFoodLogView extends StatelessWidget {
         if (state is FoodLogSuccess) {
           Navigator.pop(context);
         } else if (state is FoodLogError) {
-          print(state.errMessage);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(state.errMessage),

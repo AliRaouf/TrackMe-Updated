@@ -67,7 +67,7 @@ class _MainFeatureButtonGridState extends State<MainFeatureButtonGrid> {
                   image: "assets/images/exercise.svg",
                 ),
                 MainFeatureButton(
-                  onTap: () async {
+                  onTap: () {
                     if (state is WorkoutPlanSuccess) {
                       if (state.plans.isEmpty) {
                         context.push('/workout');

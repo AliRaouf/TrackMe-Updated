@@ -9,7 +9,7 @@ class TargetNutritionRepo {
     return nutritionHelper.getTargetNutrition();
   }
 
-  Future<int> updateTargetNutrition(TargetNutritionModel targetNutrition) {
-    return nutritionHelper.updateTargetNutrition(targetNutrition);
+  Future<int> updateTargetNutrition(int id, String columnName, int newValue) {
+    return nutritionHelper.updateSingleValue(id, columnName, newValue);
   }
 }

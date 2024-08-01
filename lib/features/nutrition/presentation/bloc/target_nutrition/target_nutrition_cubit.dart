@@ -21,10 +21,10 @@ class TargetNutritionCubit extends Cubit<TargetNutritionState> {
   }
 
   Future<void> updateTargetNutrition(
-      TargetNutritionModel targetNutritionModel) async {
+      int id, String columnName, int newValue) async {
     emit(TargetNutritionLoading());
     try {
-      await targetNutritionRepo.updateTargetNutrition(targetNutritionModel);
+      await targetNutritionRepo.updateTargetNutrition(id, columnName, newValue);
       final targetNutrition = await targetNutritionRepo.getTargetNutrition();
       emit(TargetNutritionSuccess(targetNutrition));
     } catch (e) {

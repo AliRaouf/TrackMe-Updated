@@ -11,7 +11,7 @@ class NutritionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton.small(
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
           onPressed: () {
             pushScreenWithoutNavBar(context, const AddFoodLogView());
           }),

@@ -32,6 +32,14 @@ class FoodLogList extends StatelessWidget {
                                   state.foodLogs[index].name,
                                   style: Theme.of(context).textTheme.titleSmall,
                                 ),
+                                IconButton(
+                                  padding: EdgeInsets.zero,
+                                  icon: const Icon(Icons.delete,
+                                      color: Colors.red),
+                                  onPressed: () =>
+                                      FoodLogUtils.showDeleteDialog(
+                                          context, state.foodLogs[index]),
+                                ),
                               ],
                             ),
                             Row(

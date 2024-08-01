@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:track_me_updated/constants.dart';
 import 'package:track_me_updated/core/styles.dart';
 import 'package:track_me_updated/core/theme/themes.dart';
@@ -28,32 +29,35 @@ class _WorkoutPlanViewState extends State<WorkoutPlanView>
                     text: label.name,
                   ))
               .toList();
-          return Theme(
-            data: Theme.of(context).brightness == Brightness.dark
-                ? workoutTrackerDarkTheme
-                : workoutTrackerLightTheme,
-            child: Scaffold(
-                appBar: AppBar(
-                  automaticallyImplyLeading: false,
-                  centerTitle: true,
-                  title: Text(
-                    "Workout Plan",
-                    style: TextStyles.title22Dark,
+          return PopScope(
+            onPopInvoked: (didPop) => context.push('/'),
+            child: Theme(
+              data: Theme.of(context).brightness == Brightness.dark
+                  ? workoutTrackerDarkTheme
+                  : workoutTrackerLightTheme,
+              child: Scaffold(
+                  appBar: AppBar(
+                    automaticallyImplyLeading: false,
+                    centerTitle: true,
+                    title: Text(
+                      "Workout Plan",
+                      style: TextStyles.title22Dark,
+                    ),
+                    bottom: TabBar(
+                      indicatorColor: kWorkoutTrackerLight,
+                      labelColor: Theme.of(context).colorScheme.onPrimary,
+                      controller: _tabController,
+                      tabs: tabs,
+                      isScrollable: true,
+                      tabAlignment: TabAlignment.center,
+                      unselectedLabelColor: Colors.grey.shade400,
+                    ),
                   ),
-                  bottom: TabBar(
-                    indicatorColor: kWorkoutTrackerLight,
-                    labelColor: Theme.of(context).colorScheme.onPrimary,
-                    controller: _tabController,
-                    tabs: tabs,
-                    isScrollable: true,
-                    tabAlignment: TabAlignment.center,
-                    unselectedLabelColor: Colors.grey.shade400,
-                  ),
-                ),
-                body: TabBarView(controller: _tabController, children: [
-                  ...state.days
-                      .map((title) => WorkoutPlanExercises(dayId: title.id!))
-                ])),
+                  body: TabBarView(controller: _tabController, children: [
+                    ...state.days
+                        .map((title) => WorkoutPlanExercises(dayId: title.id!))
+                  ])),
+            ),
           );
         } else if (state is WorkoutDayError) {
           return Scaffold(

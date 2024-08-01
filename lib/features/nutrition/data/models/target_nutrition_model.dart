@@ -1,7 +1,13 @@
 class TargetNutritionModel {
   final int? id, calories, carbohydrates, fat, protein, fiber, iron;
-  TargetNutritionModel(this.fiber, this.iron,
-      {this.id, this.calories, this.carbohydrates, this.fat, this.protein});
+  TargetNutritionModel(
+      {this.id,
+      this.fiber,
+      this.iron,
+      this.calories,
+      this.carbohydrates,
+      this.fat,
+      this.protein});
   Map<String, dynamic> toMap() {
     return {
       'id': id,

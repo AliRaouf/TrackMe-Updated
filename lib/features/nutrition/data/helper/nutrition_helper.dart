@@ -10,13 +10,13 @@ class NutritionHelper {
     return result.map((map) => TargetNutritionModel.fromMap(map)).toList();
   }
 
-  Future<int> updateTargetNutrition(TargetNutritionModel model) async {
+  Future<int> updateSingleValue(int id, String columnName, int newValue) async {
     final db = await DatabaseHelper.instance.database;
     return await db.update(
       'target_nutrition',
-      model.toMap(),
+      {columnName: newValue},
       where: 'id = ?',
-      whereArgs: [model.id],
+      whereArgs: [id],
     );
   }
 }

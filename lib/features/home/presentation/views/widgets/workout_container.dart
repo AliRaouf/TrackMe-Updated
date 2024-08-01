@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:track_me_updated/core/styles.dart';
+import 'package:track_me_updated/features/workout/presentation/bloc/workout_day_cubit/workout_day_cubit.dart';
+import 'package:track_me_updated/features/workout/presentation/bloc/workout_plan_cubit/workout_plan_cubit.dart';
 
 class WorkoutContainer extends StatelessWidget {
   const WorkoutContainer({super.key});
@@ -40,21 +44,36 @@ class WorkoutContainer extends StatelessWidget {
                 Text("Work out like a pro\nathlete",
                     style: Theme.of(context).textTheme.titleMedium),
                 const SizedBox(height: 12),
-                TextButton(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                      shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8))),
-                      backgroundColor: WidgetStatePropertyAll(
-                          Theme.of(context).brightness == Brightness.dark
-                              ? Colors.grey.shade200
-                              : const Color(0xff121212))),
-                  child: Text(
-                    "Get Started",
-                    style: Theme.of(context).brightness == Brightness.dark
-                        ? TextStyles.body16Light
-                        : TextStyles.body16Dark,
-                  ),
+                BlocBuilder<WorkoutPlanCubit, WorkoutPlanState>(
+                  builder: (context, state) {
+                    return TextButton(
+                      onPressed: () {
+                        if (state is WorkoutPlanSuccess) {
+                          if (state.plans.isEmpty) {
+                            context.push('/workout');
+                          } else {
+                            context
+                                .read<WorkoutDayCubit>()
+                                .loadWorkoutDays(state.plans.first.id!);
+                            context.push('/workout/workout_plan');
+                          }
+                        }
+                      },
+                      style: ButtonStyle(
+                          shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8))),
+                          backgroundColor: WidgetStatePropertyAll(
+                              Theme.of(context).brightness == Brightness.dark
+                                  ? Colors.grey.shade200
+                                  : const Color(0xff121212))),
+                      child: Text(
+                        "Get Started",
+                        style: Theme.of(context).brightness == Brightness.dark
+                            ? TextStyles.body16Light
+                            : TextStyles.body16Dark,
+                      ),
+                    );
+                  },
                 )
               ],
             ),
