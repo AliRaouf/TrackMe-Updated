@@ -21,11 +21,8 @@ class SelectedRecipeView extends StatelessWidget {
                   return IconButton(
                     onPressed: () {
                       if (isInFavorites) {
-                        final recipe = state.recipes.firstWhere((recipe) =>
-                                recipe.title ==
-                                recipeModel
-                                    .title // Return null if no recipe matches
-                            );
+                        final recipe = state.recipes.firstWhere(
+                            (recipe) => recipe.title == recipeModel.title);
                         context
                             .read<FavoriteRecipesCubit>()
                             .deleteFavoriteRecipe(recipe.id!);

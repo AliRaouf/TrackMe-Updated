@@ -15,6 +15,7 @@ import 'package:track_me_updated/features/nutrition/data/helper/nutrition_helper
 import 'package:track_me_updated/features/nutrition/data/repo/food_log_repo.dart';
 import 'package:track_me_updated/features/nutrition/data/repo/target_nutrition_repo.dart';
 import 'package:track_me_updated/features/nutrition/presentation/bloc/food_log/food_log_cubit.dart';
+import 'package:track_me_updated/features/nutrition/presentation/bloc/history_log/history_log_cubit.dart';
 import 'package:track_me_updated/features/nutrition/presentation/bloc/target_nutrition/target_nutrition_cubit.dart';
 import 'package:track_me_updated/features/recipes/data/helper/favorite_recipes_helper.dart';
 import 'package:track_me_updated/features/recipes/data/repo/favorite_recipe_repo.dart';
@@ -22,6 +23,7 @@ import 'package:track_me_updated/features/recipes/data/repo/recipe_repo_implemen
 import 'package:track_me_updated/features/recipes/presentation/bloc/favorite_recipes/favorite_recipes_cubit.dart';
 import 'package:track_me_updated/features/recipes/presentation/bloc/fetch_recipes/fetch_recipes_cubit.dart';
 import 'package:track_me_updated/features/recipes/presentation/bloc/meal_planner/meal_planner_cubit.dart';
+import 'package:track_me_updated/features/recipes/presentation/bloc/search_recipe_id/search_recipe_id_cubit.dart';
 import 'package:track_me_updated/features/theme/data/bloc/theme/theme_cubit.dart';
 import 'package:track_me_updated/features/workout/data/helper/db_helper.dart';
 import 'package:track_me_updated/features/workout/data/repo/workout_repository.dart';
@@ -53,6 +55,9 @@ class MyApp extends StatelessWidget {
                   FoodLogRepo(foodLogHelper: FoodLogHelper.instance))
                 ..getFoodLog()),
           BlocProvider(
+              create: (context) => HistoryLogCubit(
+                  FoodLogRepo(foodLogHelper: FoodLogHelper.instance))),
+          BlocProvider(
               create: (context) => WorkoutPlanCubit(
                   WorkoutRepository(databaseHelper: DatabaseHelper.instance))
                 ..loadWorkoutPlans()),
@@ -80,9 +85,15 @@ class MyApp extends StatelessWidget {
                         Dio(),
                       ),
                     ),
-                  )
-              // ..fetchRandomRecipes()
-              ),
+                  )..fetchRandomRecipes()),
+          BlocProvider(
+              create: (context) => SearchRecipeIdCubit(
+                    RecipeRepoImplementation(
+                      ApiService(
+                        Dio(),
+                      ),
+                    ),
+                  )),
           BlocProvider(
               create: (context) => MealPlannerCubit(
                     RecipeRepoImplementation(

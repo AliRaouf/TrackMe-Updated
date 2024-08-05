@@ -6,7 +6,7 @@ import 'package:track_me_updated/features/recipes/data/models/recipe_model/recip
 abstract class RecipeRepo {
   Future<Either<Failures, List<RecipeModel>>> getSearchRecipes(
       {required String query});
-  Future<Either<Failures, List<RecipeModel>>> getSimilarRecipes();
+  Future<Either<Failures, RecipeModel>> getRecipeByID({required int id});
   Future<Either<Failures, List<RecipeModel>>> getRandomRecipes();
   Future<Either<Failures, MealPlannerModel>> getMealPlan(
       String day, targetCalories, diet, exclude);

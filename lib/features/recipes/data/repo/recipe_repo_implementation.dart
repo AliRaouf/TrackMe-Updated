@@ -53,12 +53,6 @@ class RecipeRepoImplementation implements RecipeRepo {
   }
 
   @override
-  Future<Either<Failures, List<RecipeModel>>> getSimilarRecipes() {
-    // TODO: implement getSimilarRecipes
-    throw UnimplementedError();
-  }
-
-  @override
   Future<Either<Failures, MealPlannerModel>> getMealPlan(
       String day, targetCalories, diet, exclude) async {
     try {
@@ -71,6 +65,23 @@ class RecipeRepoImplementation implements RecipeRepo {
       });
 
       return right(MealPlannerModel.fromJson(data));
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failures, RecipeModel>> getRecipeByID({required int id}) async {
+    try {
+      var data = await apiService.getRecipe('/recipes/$id/information', {
+        'includeNutrition': 'true',
+        'apiKey': '67dbf1f8abf44194a1c0281cf9fdc1bc'
+      });
+
+      return right(RecipeModel.fromJson(data));
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));

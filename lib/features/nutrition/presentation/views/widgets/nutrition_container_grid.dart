@@ -16,8 +16,6 @@ class NutritionContainerGrid extends StatelessWidget {
     return BlocBuilder<TargetNutritionCubit, TargetNutritionState>(
       builder: (context, nutritionState) {
         if (nutritionState is TargetNutritionSuccess) {
-          print(
-              "Target nutrition ${nutritionState.targetNutrition[0].toMap()}");
           return BlocBuilder<FoodLogCubit, FoodLogState>(
             builder: (context, logState) {
               if (logState is FoodLogSuccess) {
